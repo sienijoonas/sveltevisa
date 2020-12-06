@@ -1,37 +1,40 @@
 <script>
     import Question from './Question.svelte';
     import AnswerButtons from './AnswerButtons.svelte';
+    import NextQuestionButton from './NextQuestionButton.svelte';
     import Results from './Results.svelte'
     import Footer from "./Footer.svelte"
     
     let questions = [
     {
         question: 'onko taa totta?',
-        explanation: '',
+        explanation: 'no taa nyt oli tammonen kyssari',
         answer: true,
     },
     {
         question: 'entas taa?',
+        explanation: 'taaki ny oli vaan tammone',
         answer: false
     },
     {
         question: 'mites tan laita?',
+        explanation: 'jep, just tammone',
         answer: true
     },
     ];
     let currentQuestion = 0;
     let correctGuesses = 0;
-    let disabled = false;
+    let isAnswered = false;
     
     const checkAnswer = (answer) => {
-        console.log(`oYAAAA ${answer}`)
-        console.log(`your answer is`)
-        console.log(answer == questions[currentQuestion].answer)
-        
         answer == questions[currentQuestion].answer && correctGuesses++;
-        currentQuestion++;
+        isAnswered = true;
     }
-    
+    const nextQuestion = () => {
+        currentQuestion++;
+        isAnswered = false;
+    }
+
     $: console.log(`questions.length: ${questions.length}, currentQuestion: ${currentQuestion}`)
 </script>
 
@@ -41,10 +44,15 @@
         {#if currentQuestion < questions.length}
         <h1>Question number {currentQuestion + 1}</h1>
         <section>
-            <Question question={questions[currentQuestion]} />
-            <AnswerButtons clickHandler={checkAnswer} />
+            <Question isAnswered={isAnswered} question={questions[currentQuestion]} />
+            {#if !isAnswered}
+            <AnswerButtons disabled={isAnswered} clickHandler={checkAnswer} />
+            {:else}
+            <NextQuestionButton clickHandler={nextQuestion} />
+            Correct: {correctGuesses}/{questions.length}
+            {/if}
         </section>
-        Correct: {correctGuesses}/{questions.length}
+
         {:else}
         <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
         {/if}
