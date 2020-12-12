@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Question from './Question.svelte';
     import AnswerButtons from './AnswerButtons.svelte';
     import NextQuestionButton from './NextQuestionButton.svelte';
@@ -6,7 +6,14 @@
     import Header from "./Header.svelte"
     import Footer from "./Footer.svelte"
     
-    let questions = [
+    type question = {
+        question: string
+        explanation: string
+        image: string
+        answer: boolean
+    }
+
+    let questions:question[] = [
     {
         question: 'onko taa totta?',
         explanation: 'no taa nyt oli tammonen kyssari',
@@ -30,7 +37,7 @@
     let correctGuesses = 0;
     let isAnswered = false;
     
-    const checkAnswer = (answer) => {
+    const checkAnswer = (answer: boolean) => {
         answer == questions[currentQuestion].answer && correctGuesses++;
         isAnswered = true;
     }
