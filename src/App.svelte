@@ -3,22 +3,26 @@
     import AnswerButtons from './AnswerButtons.svelte';
     import NextQuestionButton from './NextQuestionButton.svelte';
     import Results from './Results.svelte'
+    import Header from "./Header.svelte"
     import Footer from "./Footer.svelte"
     
     let questions = [
     {
         question: 'onko taa totta?',
         explanation: 'no taa nyt oli tammonen kyssari',
+        image: '',
         answer: true,
     },
     {
         question: 'entas taa?',
         explanation: 'taaki ny oli vaan tammone',
+        image: '',
         answer: false
     },
     {
         question: 'mites tan laita?',
         explanation: 'jep, just tammone',
+        image: '',
         answer: true
     },
     ];
@@ -39,7 +43,7 @@
 </script>
 
 <div class="wrapper">
-    <header>HEADERI</header>
+    <Header debug={{currentQuestion: currentQuestion, correctGuesses: correctGuesses, isAnswered: isAnswered}} />
     <main>
         {#if currentQuestion < questions.length}
         <h1>Question number {currentQuestion + 1}</h1>
@@ -71,11 +75,6 @@
         justify-content: space-between;
         height: 100vh;
     }
-    header {
-        display: block;
-        background-color: #aab;
-        height: 32px;
-    }
     main {
         text-align: center;
         padding: 1em;
@@ -86,7 +85,7 @@
     h1 {
         color: #003ecc;
         text-transform: uppercase;
-        font-size: 4em;
+        font-size: 3em;
         font-weight: 100;
     }
     
