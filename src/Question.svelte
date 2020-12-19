@@ -14,5 +14,7 @@
 <style>
     .question {
         color: #fffc;
+        font-family: 'Palanquin Dark', sans-serif;
+        font-size: 22px;
     }
 </style>

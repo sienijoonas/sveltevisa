@@ -2,7 +2,7 @@ import type { question } from "../types"
 
 export let testQuestions:question[] = [
     {
-        question: 'taa on totta',
+        question: 'Do you think this sentence is correct?',
         explanation: 'no taa nyt oli tammonen kyssari',
         image: '',
         answer: true,

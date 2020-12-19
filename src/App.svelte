@@ -1,7 +1,8 @@
 <script lang="ts">
     import Question from './Question.svelte';
     import AnswerButtons from './AnswerButtons.svelte';
-    import NextQuestionButton from './NextQuestionButton.svelte';
+    import Button from './Button.svelte';
+    import Title from './Title.svelte'
     import Results from './Results.svelte'
     import Header from "./Header.svelte"
     import Footer from "./Footer.svelte"
@@ -23,29 +24,44 @@
     }
 
     $: console.log(`questions.length: ${questions.length}, currentQuestion: ${currentQuestion}`)
+    $: isOver = currentQuestion >= questions.length
+
 </script>
 
 <div class="wrapper">
     <Header debug={{currentQuestion: currentQuestion, correctGuesses: correctGuesses, isAnswered: isAnswered}} />
     <main>
         {#if currentQuestion < questions.length}
-        <h1>Question number {currentQuestion + 1}</h1>
-        <section>
-            <Question isAnswered={isAnswered} question={questions[currentQuestion]} />
-        </section>
-        <div class="section">
-            {#if !isAnswered}
-            <AnswerButtons disabled={isAnswered} clickHandler={checkAnswer} />
-            {:else}
-            <NextQuestionButton clickHandler={nextQuestion} totalQuestions={questions.length} currentQuestion={currentQuestion} />
-            <div>
-                <p>Correct: {correctGuesses}/{questions.length}</p>
+            <section class="title">
+                <Title currentQuestion={currentQuestion} isOver={isOver} />
+            </section>
+            <section class="question">
+                <Question isAnswered={isAnswered} question={questions[currentQuestion]} />
+            </section>
+            <div class="buttons">
+                {#if !isAnswered}
+                    <AnswerButtons>
+                        <Button text="YES" clickHandler={checkAnswer} parameter={true} />
+                        <Button text="NO" clickHandler={checkAnswer} parameter={false} />
+                    </AnswerButtons>
+                {:else}
+                    <div>
+                        <p>Correct: {correctGuesses}/{questions.length}</p>
+                    </div>
+                    <AnswerButtons>
+                        <Button
+                            text={
+                                currentQuestion + 1 == questions.length ? 
+                                    `See results` :
+                                    `Next Question`
+                                }
+                            clickHandler={nextQuestion}    
+                        />
+                    </AnswerButtons>
+                {/if}
             </div>
-            {/if}
-        </div>
-
         {:else}
-        <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
+            <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
         {/if}
         
     </main>
@@ -55,6 +71,7 @@
 <style type="text/scss">
 
     @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark&display=swap');
 
     :global(*) {
         box-sizing: border-box;
@@ -78,7 +95,7 @@
         border: 2px solid hsl(205, 13%, 48%);
         border-radius: 16px;
         padding: 32px 64px;
-        max-width: 240px;
+        width: 720px;
         height: 540px;
         background-color: hsl(205, 23%, 58%);
         box-shadow: 0 6px 0px 0px hsl(205, 13%, 38%);
@@ -104,45 +121,6 @@
 
             }
 
-    }
-
-    h1 {
-        display: block;
-        margin-top: 0;
-        border: 2px solid hsl(1, 16%, 46%);
-        border-radius: 16px;
-        padding: 16px 32px;
-        width: 100%;
-        background-color: hsl(1, 26%, 56%);
-        color: #eee;
-        text-transform: uppercase;
-        font-family: 'Bungee', cursive;
-        font-size: 3em;
-        font-weight: 100;
-        text-shadow: 1px 1px #0004;
-        box-shadow: 0 6px 0px 0px hsl(1, 06%, 36%);
-        user-select: none;
-        transform: rotate(-1deg);
-
-        &:before {
-                top: 4px;
-                left: 6px;
-            }
-            &:after {
-                bottom: 4px;
-                right: 6px;
-            }
-            &:before,
-            &:after {
-                content: '◎';
-                color: #0004;
-                position: absolute;
-                font-weight: bold;
-                font-size: 18px;
-                user-select: none;
-                text-shadow: 1px 1px 0px #fff3;
-
-            }
     }
     
     @media (min-width: 640px) {
