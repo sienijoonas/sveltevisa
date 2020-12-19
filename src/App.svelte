@@ -5,43 +5,19 @@
     import Results from './Results.svelte'
     import Header from "./Header.svelte"
     import Footer from "./Footer.svelte"
-    
-    type question = {
-        question: string
-        explanation: string
-        image: string
-        answer: boolean
-    }
+    import { testQuestions } from "./questions/questions"
 
-    let questions:question[] = [
-    {
-        question: 'onko taa totta?',
-        explanation: 'no taa nyt oli tammonen kyssari',
-        image: '',
-        answer: true,
-    },
-    {
-        question: 'entas taa?',
-        explanation: 'taaki ny oli vaan tammone',
-        image: '',
-        answer: false
-    },
-    {
-        question: 'mites tan laita?',
-        explanation: 'jep, just tammone',
-        image: '',
-        answer: true
-    },
-    ];
+    let questions = testQuestions
+
     let currentQuestion = 0;
     let correctGuesses = 0;
     let isAnswered = false;
     
-    const checkAnswer = (answer: boolean) => {
+    const checkAnswer = (answer: boolean): void => {
         answer == questions[currentQuestion].answer && correctGuesses++;
         isAnswered = true;
     }
-    const nextQuestion = () => {
+    const nextQuestion = (): void => {
         currentQuestion++;
         isAnswered = false;
     }
@@ -56,13 +32,17 @@
         <h1>Question number {currentQuestion + 1}</h1>
         <section>
             <Question isAnswered={isAnswered} question={questions[currentQuestion]} />
+        </section>
+        <div class="section">
             {#if !isAnswered}
             <AnswerButtons disabled={isAnswered} clickHandler={checkAnswer} />
             {:else}
-            <NextQuestionButton clickHandler={nextQuestion} />
-            Correct: {correctGuesses}/{questions.length}
+            <NextQuestionButton clickHandler={nextQuestion} totalQuestions={questions.length} currentQuestion={currentQuestion} />
+            <div>
+                <p>Correct: {correctGuesses}/{questions.length}</p>
+            </div>
             {/if}
-        </section>
+        </div>
 
         {:else}
         <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
@@ -73,8 +53,15 @@
 </div>
 
 <style type="text/scss">
+
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+    :global(*) {
+        box-sizing: border-box;
+    }
     :global(body) {
         padding: 0;
+        background-color: rgb(232, 227, 236);
     }
     .wrapper {
         display: flex;
@@ -83,17 +70,79 @@
         height: 100vh;
     }
     main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         margin: 0 auto;
+        border: 2px solid hsl(205, 13%, 48%);
+        border-radius: 16px;
+        padding: 32px 64px;
+        max-width: 240px;
+        height: 540px;
+        background-color: hsl(205, 23%, 58%);
+        box-shadow: 0 6px 0px 0px hsl(205, 13%, 38%);
+        text-align: center;
+
+            &:before {
+                top: 4px;
+                left: 6px;
+            }
+            &:after {
+                bottom: 4px;
+                right: 6px;
+            }
+            &:before,
+            &:after {
+                content: '◎';
+                color: #0002;
+                position: absolute;
+                font-weight: bold;
+                font-size: 24px;
+                user-select: none;
+                text-shadow: 2px 2px 0px #fff2;
+
+            }
+
     }
 
     h1 {
-        color: #003ecc;
+        display: block;
+        margin-top: 0;
+        border: 2px solid hsl(1, 16%, 46%);
+        border-radius: 16px;
+        padding: 16px 32px;
+        width: 100%;
+        background-color: hsl(1, 26%, 56%);
+        color: #eee;
         text-transform: uppercase;
+        font-family: 'Bungee', cursive;
         font-size: 3em;
         font-weight: 100;
+        text-shadow: 1px 1px #0004;
+        box-shadow: 0 6px 0px 0px hsl(1, 06%, 36%);
+        user-select: none;
+        transform: rotate(-1deg);
+
+        &:before {
+                top: 4px;
+                left: 6px;
+            }
+            &:after {
+                bottom: 4px;
+                right: 6px;
+            }
+            &:before,
+            &:after {
+                content: '◎';
+                color: #0004;
+                position: absolute;
+                font-weight: bold;
+                font-size: 18px;
+                user-select: none;
+                text-shadow: 1px 1px 0px #fff3;
+
+            }
     }
     
     @media (min-width: 640px) {
