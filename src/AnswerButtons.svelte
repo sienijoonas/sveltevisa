@@ -8,13 +8,14 @@
         box-shadow: inset 0px 2px 2px 2px hsl(204deg, 23%, 38%);
         border-radius: 16px;
         background-color: hsl(204deg, 23%, 48%);
-        width: 440px;
+        width: 384px;
     }
     .container {
         position: relative;
         display: flex;
         justify-content: space-around;
         align-items: flex-start;
+        flex-wrap: wrap;
         border: 2px solid 	hsl(205, 89%, 71%);
         border-radius: 16px;
         padding: 16px 16px 20px;
@@ -42,10 +43,25 @@
             text-shadow: 1px 1px 1px #fff2;
         }
     }
+    @media (max-width: 560px) {
+        .shadow {
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            padding: 0vw 2vw 3vw;
+
+            &:before,
+            &:after {
+                content: none;
+            }
+        }
+    }
+
 </style>
 
 <div class="shadow">
-    <div class="container" in:fly="{{ y: -200, duration: 800 }}">
+    <div class="container" in:fly="{{ y: -64, duration: 800 }}">
         <slot />
     </div>
 </div>

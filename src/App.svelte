@@ -7,6 +7,7 @@
     import Header from "./Header.svelte"
     import Footer from "./Footer.svelte"
     import { testQuestions } from "./questions/questions"
+    import { Languages } from "./types"
 
     let questions = testQuestions
 
@@ -41,13 +42,12 @@
             <div class="buttons">
                 {#if !isAnswered}
                     <AnswerButtons>
-                        <Button text="YES" clickHandler={checkAnswer} parameter={true} />
-                        <Button text="NO" clickHandler={checkAnswer} parameter={false} />
+                        <Button text={Languages.ja} clickHandler={checkAnswer} parameter={Languages.ja} />
+                        <Button text={Languages.zh} clickHandler={checkAnswer} parameter={Languages.zh} />
+                        <Button text={Languages.th} clickHandler={checkAnswer} parameter={Languages.th} />
+                        <Button text={Languages.kr} clickHandler={checkAnswer} parameter={Languages.kr} />
                     </AnswerButtons>
                 {:else}
-                    <div>
-                        <p>Correct: {correctGuesses}/{questions.length}</p>
-                    </div>
                     <AnswerButtons>
                         <Button
                             text={
@@ -78,7 +78,12 @@
     }
     :global(body) {
         padding: 0;
-        background-color: rgb(232, 227, 236);
+        // background-color: rgb(232, 227, 236);
+        background-image: url(../images/bg.jpg);
+        backdrop-filter: blur(16px) grayscale(30%) brightness(120%);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     .wrapper {
         display: flex;
@@ -92,13 +97,13 @@
         flex-direction: column;
         justify-content: space-between;
         margin: 0 auto;
-        border: 2px solid hsl(205, 13%, 48%);
+        border: 3px solid hsl(205, 13%, 48%);
         border-radius: 16px;
         padding: 32px 64px;
-        width: 720px;
-        height: 540px;
+        width: 540px;
+        height: 620px;
         background-color: hsl(205, 23%, 58%);
-        box-shadow: 0 6px 0px 0px hsl(205, 13%, 38%);
+        box-shadow: 0 8px 0px 0px #54636d, 0 6px 8px 6px #0006;
         text-align: center;
 
             &:before {
@@ -123,9 +128,14 @@
 
     }
     
-    @media (min-width: 640px) {
+    @media (max-width: 560px) {
+        :global(body) {
+            padding: 0 10px;
+        }
         main {
-            max-width: none;
+            width: 100%;
+            height: auto;
+            padding: 8vw 10vw;
         }
     }
 </style>
