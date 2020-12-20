@@ -61,7 +61,10 @@
                 {/if}
             </div>
         {:else}
-            <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
+            <Title />
+            <AnswerButtons>
+                <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
+            </AnswerButtons>
         {/if}
         
     </main>

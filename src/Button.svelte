@@ -34,7 +34,6 @@
         }
         &:active{
             transform: translateY(6px);
-            // border: 2px solid green;
             background-color: hsl(60, 78%, 91%);
             padding-top: 13px;
             padding-bottom: 11px;
