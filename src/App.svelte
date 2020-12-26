@@ -21,9 +21,12 @@
   :global(*) {
     box-sizing: border-box;
   }
+  :global(html) {
+    height: 100%;
+  }
   :global(body) {
     padding: 0;
-    // background-color: rgb(232, 227, 236);
+    height:100%;
     background-image: url(../images/bg.jpg);
     backdrop-filter: blur(16px) grayscale(30%) brightness(120%);
     background-position: center;

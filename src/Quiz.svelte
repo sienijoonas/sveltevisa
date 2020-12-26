@@ -121,8 +121,9 @@
   @media (max-width: 560px) {
     main {
       width: 100%;
+      min-height: 60vh;
       height: auto;
-      padding: 8vw 10vw;
+      padding: 4vw 10vw;
     }
   }
 </style>

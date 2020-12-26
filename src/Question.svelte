@@ -75,11 +75,11 @@
   @media (max-width: 560px) {
     .img {
       width: 100%;
-      height: 50vw;
+      height: 40vw;
 
       &:before {
         width: calc( 100% - 4px );
-        height: calc( 50vw - 4px );
+        height: calc( 40vw - 4px );
       }
     }
   }
