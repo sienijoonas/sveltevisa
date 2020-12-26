@@ -29,7 +29,7 @@
         color: hsl(60, 78%, 91%);
         text-transform: uppercase;
         font-family: 'Bungee', cursive;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 100;
         text-shadow: 3px 3px #0004;
         text-transform: uppercase;
@@ -41,7 +41,7 @@
             top: 6px;
             padding: 0px 24px;
             color: #eee;
-            font-size: 48px;
+            font-size: 64px;
         }
 
         &:before {
@@ -67,7 +67,7 @@
 
     @media (max-width: 560px) {
         span, span:nth-child(2) {
-            font-size: 5vw;
+            font-size: 6vw;
             padding: 2vw 6vw;
 
             &:nth-child(2) {

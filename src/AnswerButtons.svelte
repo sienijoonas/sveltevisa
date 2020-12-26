@@ -45,6 +45,7 @@
     }
     @media (max-width: 560px) {
         .shadow {
+            margin-top: 4vw;
             width: 100%;
             height: auto;
         }

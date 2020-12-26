@@ -52,8 +52,8 @@
 
         img {
             object-fit: cover;
-            width: 150%;
-            height: 150%;
+            width: 120%;
+            height: 120%;
             transform-origin: center;
             transform: rotate(5deg) translate(-10%, -10%);
         }
