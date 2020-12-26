@@ -41,6 +41,9 @@
     :global(body) {
       padding: 0 10px;
     }
+    .wrapper {
+      justify-content: center;
+    }
     .results {
       margin-top: 4vw;
     }

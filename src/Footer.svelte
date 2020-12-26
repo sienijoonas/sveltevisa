@@ -40,4 +40,10 @@
       }
     }
   }
+
+  @media (max-width: 560px) {
+    footer {
+      display: none;
+    }
+  }
 </style>

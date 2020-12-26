@@ -12,7 +12,7 @@
   button {
     position: relative;
     background-color: hsl(60, 78%, 91%);
-    border: 2px solid hsl(60, 68%, 81%);
+    border: 3px solid hsl(60, 68%, 81%);
     border-radius: 12px;
     padding: 12px 24px;
     width: 40%;
@@ -29,7 +29,7 @@
 
     &:hover {
       transform: translateY(4px);
-      border: 2px solid hsl(60, 68%, 81%);
+      border: 3px solid hsl(60, 68%, 81%);
       box-shadow: 0 4px 0px 0px  hsl(60, 58%, 71%);
     }
     &:active{

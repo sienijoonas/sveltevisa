@@ -15,4 +15,10 @@
     text-shadow: 1px 1px 1px #0001;
     font-size: 0.8em;
   }
+
+  @media (max-width: 560px) {
+    header {
+      display: none;
+    }
+  }
 </style>
