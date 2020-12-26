@@ -1,6 +1,7 @@
 <script>
     export let question;
     export let isAnswered;
+    export let isCorrect;
 </script>
 
 <div class="question">
@@ -10,6 +11,11 @@
             <img src="images/{question.image}" alt={`Question`}>
         </div>
     {:else}
+        {#if isCorrect}
+            <span class="correct">Correct!</span>
+        {:else}
+            <span class="wrong">WRONG</span>
+        {/if}
         <p>{question.explanation}</p>
     {/if}
 </div>
@@ -20,12 +26,19 @@
         flex-direction: column;
         justify-content: space-around;
     }
-    p {
+    p, span {
         margin: 8px auto;
         color: #fffd;
         font-family: 'Palanquin Dark', sans-serif;
         font-size: 28px;
         line-height: 32px;
+    }
+    .correct,
+    .wrong {
+        padding-bottom: 16px;
+        font-size: 48px;
+        font-weight: 600;
+        text-transform: uppercase;
     }
     .img {
         position: relative;

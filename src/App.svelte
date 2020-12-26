@@ -7,10 +7,6 @@
     let questions = testQuestions
 </script>
 
-<svelte:head>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
-</svelte:head>
-
 <div class="wrapper">
     <Header />
     <Quiz questions={questions} />

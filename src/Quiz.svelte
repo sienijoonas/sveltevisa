@@ -5,15 +5,18 @@
   import Title from './Title.svelte'
   import Results from './Results.svelte'
   import { Languages } from "./types"
+  import confetti from "canvas-confetti"
   
   export let questions;
   
   let currentQuestion = 0;
   let correctGuesses = 0;
   let isAnswered = false;
+  let isCorrect = false;
   
   const checkAnswer = (answer: boolean): void => {
     if (answer == questions[currentQuestion].answer) {
+      isCorrect = true;
       correctGuesses++;
       confetti({
         scalar: 4,
@@ -24,6 +27,8 @@
           y: 0.6,
         }
       })
+    } else {
+      isCorrect = false
     }
     
     isAnswered = true;
@@ -44,7 +49,7 @@
     <Title currentQuestion={currentQuestion} isOver={isOver} />
   </section>
   <section class="question">
-    <Question isAnswered={isAnswered} question={questions[currentQuestion]} />
+    <Question isAnswered={isAnswered} question={questions[currentQuestion]} isCorrect={isCorrect} />
   </section>
   <div class="buttons">
     {#if !isAnswered}

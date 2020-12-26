@@ -19,17 +19,6 @@
     }
     
   }
-  
-  confetti({
-    scalar: 4,
-    gravity: 2,
-    spread: 90,
-    ticks: 50,
-    origin: {
-      y: 0.6,
-    }
-  });
-  
 </script>
 
 <section>
