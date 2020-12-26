@@ -1,9 +1,9 @@
 <script lang="ts">
   export let results;
-  
+
   const getRating = (points) => {
     const prc = points / results.totalQuestions
-    
+
     if (prc == 1) {
       return 'Perfect!!'
     } else if (prc >= 0.8) {
@@ -17,7 +17,7 @@
     } else {
       return 'Better luck next time!'
     }
-    
+
   }
 </script>
 
@@ -40,7 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     & span {
       display: block;
       color: #fff;
@@ -57,7 +57,7 @@
     line-height: 84px;
     padding: 0 8px;
   }
-  
+
   @media (max-width: 560px) {
     p {
       margin: 0;
