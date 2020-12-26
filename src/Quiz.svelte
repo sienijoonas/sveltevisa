@@ -6,14 +6,14 @@
   import Results from './Results.svelte'
   import { Languages } from "./types"
   import confetti from "canvas-confetti"
-  
+
   export let questions;
-  
+
   let currentQuestion = 0;
   let correctGuesses = 0;
   let isAnswered = false;
   let isCorrect = false;
-  
+
   const checkAnswer = (answer: boolean): void => {
     if (answer == questions[currentQuestion].answer) {
       isCorrect = true;
@@ -30,27 +30,27 @@
     } else {
       isCorrect = false
     }
-    
+
     isAnswered = true;
   }
   const nextQuestion = (): void => {
     currentQuestion++;
     isAnswered = false;
   }
-  
+
   $: console.log(`questions.length: ${questions.length}, currentQuestion: ${currentQuestion}`)
   $: isOver = currentQuestion >= questions.length
-  
+
 </script>
 
 <main>
   {#if currentQuestion < questions.length}
-  <section class="title">
+  <div class="title">
     <Title currentQuestion={currentQuestion} isOver={isOver} />
-  </section>
-  <section class="question">
+  </div>
+  <div class="question">
     <Question isAnswered={isAnswered} question={questions[currentQuestion]} isCorrect={isCorrect} />
-  </section>
+  </div>
   <div class="buttons">
     {#if !isAnswered}
     <AnswerButtons>
@@ -63,11 +63,11 @@
     <AnswerButtons>
       <Button
       text={
-        currentQuestion + 1 == questions.length ? 
+        currentQuestion + 1 == questions.length ?
         `See results` :
         `Next Question`
       }
-      clickHandler={nextQuestion}    
+      clickHandler={nextQuestion}
       />
     </AnswerButtons>
     {/if}
@@ -78,7 +78,7 @@
     <Results results={{correct: correctGuesses, totalQuestions: questions.length}} />
   </AnswerButtons>
   {/if}
-  
+
 </main>
 
 <style type="text/scss">
@@ -96,7 +96,7 @@
     background-color: hsl(205, 23%, 58%);
     box-shadow: 0 8px 0px 0px #54636d, 0 6px 8px 6px #0006;
     text-align: center;
-    
+
     &:before {
       top: 4px;
       left: 6px;
@@ -114,10 +114,10 @@
       font-size: 24px;
       user-select: none;
       text-shadow: 2px 2px 0px #fff2;
-      
+
     }
   }
-  
+
   @media (max-width: 560px) {
     main {
       width: 100%;
