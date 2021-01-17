@@ -43,6 +43,10 @@
   @media (max-width: 560px) {
     :global(body) {
       padding: 0 10px;
+      background-position: top;
+      background-repeat: repeat;
+      background-size: 190vw 120vh;
+      background-color: #593938;
     }
     .wrapper {
       justify-content: center;
