@@ -7,6 +7,10 @@
   let questions = testQuestions
 </script>
 
+<svelte:head>
+  <script data-ad-client="ca-pub-7933888855529725" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</svelte:head>
+
 <div class="wrapper">
   <Header />
   <Quiz questions={questions} />
