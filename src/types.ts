@@ -1,8 +1,11 @@
-export type question = {
-  question: string
-  explanation: string
-  image: string
-  answer: boolean | Languages
+export type Question = {
+  questions: {
+    title: string
+    explanation: string,
+    image: string,
+    answer: Languages | Guitars
+  }[],
+  answers: Languages[] | Guitars[]
 }
 
 export enum Languages {
@@ -10,4 +13,11 @@ export enum Languages {
   zh = 'Mandarin',
   th = 'Thai',
   kr = 'Korean',
+}
+
+export enum Guitars {
+  gibson = 'Gibson',
+  jackson = 'Jackson',
+  ibanez = 'Ibanez',
+  fender = 'Fender',
 }

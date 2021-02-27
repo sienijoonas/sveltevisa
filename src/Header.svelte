@@ -1,5 +1,5 @@
 <header>
-  <p>Language Quiz</p>
+  <p>Quiz!</p>
 </header>
 
 <style>

@@ -4,10 +4,11 @@
   import Button from './Button.svelte';
   import Title from './Title.svelte'
   import Results from './Results.svelte'
-  import { Languages } from "./types"
   import confetti from "canvas-confetti"
 
-  export let questions;
+  export let questionData;
+  let questions = questionData.questions
+  let answers = questionData.answers
 
   let currentQuestion = 0;
   let correctGuesses = 0;
@@ -54,10 +55,10 @@
   <div class="buttons">
     {#if !isAnswered}
     <AnswerButtons>
-      <Button text={Languages.ja} clickHandler={checkAnswer} parameter={Languages.ja} />
-      <Button text={Languages.zh} clickHandler={checkAnswer} parameter={Languages.zh} />
-      <Button text={Languages.th} clickHandler={checkAnswer} parameter={Languages.th} />
-      <Button text={Languages.kr} clickHandler={checkAnswer} parameter={Languages.kr} />
+      <Button text={answers[0]} clickHandler={checkAnswer} parameter={answers[0]} />
+      <Button text={answers[1]} clickHandler={checkAnswer} parameter={answers[1]} />
+      <Button text={answers[2]} clickHandler={checkAnswer} parameter={answers[2]} />
+      <Button text={answers[3]} clickHandler={checkAnswer} parameter={answers[3]} />
     </AnswerButtons>
     {:else}
     <AnswerButtons>

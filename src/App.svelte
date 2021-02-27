@@ -2,18 +2,24 @@
   import Header from "./Header.svelte"
   import Quiz from "./Quiz.svelte"
   import Footer from "./Footer.svelte"
-  import { testQuestions } from "./questions/questions"
+  import { guitars, languages } from "./questions/questions"
 
-  let questions = testQuestions
+  let pizza = guitars;
+  console.log(pizza)
+  console.log(Object.keys(pizza))
+
+  let questions = {
+    questions: pizza.questions,
+    answers: pizza.answers,
+  }
+
+  console.log(questions)
+
 </script>
-
-<svelte:head>
-  <script data-ad-client="ca-pub-7933888855529725" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</svelte:head>
 
 <div class="wrapper">
   <Header />
-  <Quiz questions={questions} />
+  <Quiz questionData={questions} />
   <Footer />
 </div>
 
